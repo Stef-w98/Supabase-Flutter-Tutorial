@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_auth/screens/Profile.dart';
 import 'package:supabase_auth/supabase_state/auth_require_state.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -11,6 +12,7 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends AuthRequiredState<DashboardScreen> {
   User? user;
+  int currentPage = 0;
 
   @override
   void onAuthenticated(Session session) {
@@ -21,6 +23,122 @@ class _DashboardScreenState extends AuthRequiredState<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            Container(
+              height: 30.0,
+            ),
+            ListTile(
+              title: Text('Home'),
+              leading: Icon(Icons.home_outlined),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const ProfilePage();
+                    },
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Medication'),
+              leading: Icon(Icons.medication_outlined),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const ProfilePage();
+                    },
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Weight'),
+              leading: Icon(Icons.monitor_weight_outlined),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const ProfilePage();
+                    },
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Temperature'),
+              leading: Icon(Icons.thermostat_outlined),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const ProfilePage();
+                    },
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Bloodpresure'),
+              leading: Icon(Icons.medical_information_outlined),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const ProfilePage();
+                    },
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Saturation'),
+              leading: Icon(Icons.water_drop_outlined),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const ProfilePage();
+                    },
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Heart rate'),
+              leading: Icon(Icons.monitor_heart_outlined),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const ProfilePage();
+                    },
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Settings'),
+              leading: Icon(Icons.settings),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const ProfilePage();
+                    },
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+      appBar: AppBar(
+        title: const Text('MedRemind'),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,7 +151,7 @@ class _DashboardScreenState extends AuthRequiredState<DashboardScreen> {
               right: 16,
             ),
             child: const Text(
-              "Welcome to Supabase",
+              "MedRemind",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -66,6 +184,22 @@ class _DashboardScreenState extends AuthRequiredState<DashboardScreen> {
             child: const Text('SignOut'),
           )
         ],
+      ),
+      bottomNavigationBar: NavigationBar(
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+          NavigationDestination(
+              icon: Icon(Icons.inventory), label: 'Inventory'),
+          NavigationDestination(
+              icon: Icon(Icons.medication), label: 'Medication'),
+          NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
+        ],
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPage = index;
+          });
+        },
+        selectedIndex: currentPage,
       ),
     );
   }

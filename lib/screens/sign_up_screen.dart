@@ -44,7 +44,7 @@ class _SignUpScreenState extends AuthState<SignUpScreen> {
                                 right: 16,
                               ),
                               child: const Text(
-                                "Welcome to Supabase",
+                                "MedRemind",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
